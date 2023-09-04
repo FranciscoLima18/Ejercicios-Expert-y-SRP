@@ -5,48 +5,16 @@ namespace Library
 {
     public class AppointmentService
     {
-        public static string CreateAppointment(string name, string id, string phoneNumber, DateTime date, string appoinmentPlace, string doctorName)
+        public static string CreateAppointment(string name, string phone, string email, DateTime date, string address, string doctor)
         {
-            StringBuilder stringBuilder = new StringBuilder("Scheduling appointment...\n");
-            Boolean isValid = true;
-
-            if (string.IsNullOrEmpty(name))
+            if (AppointmentValidator.Validator(name, phone, email, date, address, doctor))
             {
-                stringBuilder.Append("Unable to schedule appointment, 'name' is required\n");
-                isValid = false;
+                return AppointmentRegister.RegisterAppointment(name, phone, email, date, address, doctor);
             }
-
-            if (string.IsNullOrEmpty(id))
+            else
             {
-                stringBuilder.Append("Unable to schedule appointment, 'id' is required\n");
-                isValid = false;
+                return "Appointment Error";
             }
-
-            if (string.IsNullOrEmpty(phoneNumber))
-            {
-                stringBuilder.Append("Unable to schedule appointment, 'phone number' is required\n");
-                isValid = false;
-            }
-
-            if (string.IsNullOrEmpty(appoinmentPlace))
-            {
-                stringBuilder.Append("Unable to schedule appointment, 'appoinment place' is required\n");
-                isValid = false;
-            }
-
-
-            if (string.IsNullOrEmpty(doctorName))
-            {
-                stringBuilder.Append("Unable to schedule appointment, 'doctor name' is required\n");
-                isValid = false;
-            }
-
-            if (isValid)
-            {
-                stringBuilder.Append("Appoinment scheduled");
-            }
-
-            return stringBuilder.ToString();
         }
 
     }

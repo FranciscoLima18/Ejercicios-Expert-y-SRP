@@ -1,17 +1,42 @@
 ﻿using System;
-using Library;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Program
+namespace MedicalAppointmentSystem
 {
     class Program
     {
         static void Main(string[] args)
         {
-            string appointmentResult = AppointmentService.CreateAppointment("Steven Jhonson", "986782342", "5555-555-555", DateTime.Now, "Wall Street", "Armand");
-            Console.WriteLine(appointmentResult);
+            Console.WriteLine("Medical Appointment System");
 
-            string appointmentResult2 = AppointmentService.CreateAppointment("Ralf Manson", "", "5555-555-555", DateTime.Now, "Queen Street", "");
-            Console.WriteLine(appointmentResult2);
+            Console.Write("Enter patient name: ");
+            string name = Console.ReadLine();
+
+            Console.Write("Enter patient phone: ");
+            string phone = Console.ReadLine();
+
+            Console.Write("Enter patient email: ");
+            string email = Console.ReadLine();
+
+            Console.Write("Enter appointment date (yyyy-MM-dd HH:mm): ");
+            if (DateTime.TryParse(Console.ReadLine(), out DateTime date))
+            {
+                Console.Write("Enter patient address: ");
+                string address = Console.ReadLine();
+
+                Console.Write("Enter doctor's name: ");
+                string doctor = Console.ReadLine();
+
+                string result = Library.AppointmentService.CreateAppointment(name, phone, email, date, address, doctor);
+                Console.WriteLine(result);
+            }
+            else
+            {
+                Console.WriteLine("Invalid date format. Please use yyyy-MM-dd HH:mm.");
+            }
         }
     }
 }
