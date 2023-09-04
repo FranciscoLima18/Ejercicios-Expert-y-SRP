@@ -40,3 +40,10 @@ namespace MedicalAppointmentSystem
         }
     }
 }
+
+/*
+Principio SRP: La clase Appointment no cumple con el, ya que tiene varias responsabilidades
+para cumplir, entre ellas: validar los datos y crear un mensaje sobra la consulta.
+Patron EXPERT: lo ideal en esta clase es dividirla en dos, separando la responsabilidad de
+validar los datos en una propia clase separada.
+*/
